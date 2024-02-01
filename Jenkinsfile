@@ -45,7 +45,7 @@ pipeline {
       steps{
         script {
             docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-            dockerImage.push('${BUILD_NUMBER}')
+            dockerImage.push('${env.BUILD_NUMBER}')
             sh 'echo ${GIT_COMMIT}'
           }
         }
