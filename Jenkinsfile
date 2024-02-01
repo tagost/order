@@ -10,8 +10,7 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        //git branch: 'main', url: 'https://github.com/tagost/order.git'
-        sh 'true'
+        git branch: 'main', url: 'https://github.com/tagost/order.git'
       }
     }
     
