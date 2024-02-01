@@ -45,7 +45,7 @@ pipeline {
       steps{
         script {
             docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-            dockerImage.push('latest')
+            dockerImage.push('${GIT_COMMIT}')
             sh 'echo ${GIT_COMMIT}'
           }
         }
