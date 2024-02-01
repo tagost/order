@@ -47,11 +47,9 @@ pipeline {
         script {
             docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
             dockerImage.push("$GIT_COMMIT")
-            sh 'echo ${GIT_COMMIT}'
-            script{              
-              def commit = sh(returnStdout: true, script: 'git log -1 --format=%h')
-              echo "commit: '${commit}'"
-            }            
+            sh 'echo ${GIT_COMMIT}'      
+            def commit = sh(returnStdout: true, script: 'git log -1 --format=%h')
+            echo "commit: '${commit}'"         
           }
         }
       }
@@ -59,9 +57,12 @@ pipeline {
     
     stage('Clone Gitops Repo dev Branch') {
       steps {
-        git branch: 'main', url: 'https://github.com/tagost/app1-argocd.git'
-        sh 'ls -ltr && pwd'
-        sh 'echo ${commit}'
+        script{
+          git branch: 'main', url: 'https://github.com/tagost/app1-argocd.git'
+          sh 'ls -ltr && pwd'
+          sh 'echo ${commit}'
+        }
+
       }
     }
   }  
