@@ -11,10 +11,8 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git branch: 'main', url: 'https://github.com/tagost/order.git'
+        //git branch: 'main', url: 'https://github.com/tagost/order.git'
         sh 'echo ${GIT_COMMIT}'
-        env.COMMIT=${GIT_COMMIT}
-      }
     }
     
     stage('Back-end') {
@@ -41,7 +39,7 @@ pipeline {
       steps{
         script {
             docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-            dockerImage.push('${env.COMMIT}')
+            dockerImage.push('${GIT_COMMIT}')
           }
         }
       }
