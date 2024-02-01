@@ -58,7 +58,7 @@ pipeline {
       steps {
         git branch: 'main', url: 'https://github.com/tagost/app1-argocd.git'
         sh 'ls -ltr && pwd'
-        sh 'echo $commit'
+        sh 'echo ${commit}'
       }
     }
   }  
