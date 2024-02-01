@@ -1,4 +1,3 @@
-def COMMIT=" "
 pipeline {
   environment {
     dockerimagename = "tagost/order"
@@ -11,8 +10,8 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        //git branch: 'main', url: 'https://github.com/tagost/order.git'
-        sh 'echo ${GIT_COMMIT}'
+        git branch: 'main', url: 'https://github.com/tagost/order.git'
+      }
     }
     
     stage('Back-end') {
@@ -39,7 +38,8 @@ pipeline {
       steps{
         script {
             docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-            dockerImage.push('${GIT_COMMIT}')
+            dockerImage.push('latest')
+            sh 'echo ${GIT_COMMIT}'
           }
         }
       }
@@ -52,5 +52,4 @@ pipeline {
       }
     }
   }  
-}
 }  
