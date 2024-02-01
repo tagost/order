@@ -2,6 +2,7 @@ pipeline {
   environment {
     dockerimagename = "tagost/order"
     dockerImage = ""
+    commit= ""
   }
 
   agent any
@@ -47,7 +48,7 @@ pipeline {
             docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
             dockerImage.push("$GIT_COMMIT")
             sh 'echo ${GIT_COMMIT}'
-            sh 'git log -1 --format=%h'
+            commit = sh ('git log -1 --format=%h')
           }
         }
       }
@@ -57,6 +58,7 @@ pipeline {
       steps {
         git branch: 'main', url: 'https://github.com/tagost/app1-argocd.git'
         sh 'ls -ltr && pwd'
+        sh 'echo $commit'
       }
     }
   }  
