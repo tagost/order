@@ -55,7 +55,7 @@ pipeline {
     stage('Clone Gitops Repo dev Branch') {
       steps {
         git branch: 'main', url: 'https://github.com/tagost/app1-argocd.git'
-        sh 'ls -ltr'
+        sh 'ls -ltr && pwd'
       }
     }
   }  
