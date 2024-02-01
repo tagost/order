@@ -45,7 +45,7 @@ pipeline {
       steps{
         script {
             docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-            dockerImage.push("$BUILD_NUMBER")
+            dockerImage.push("$GIT_COMMIT")
             sh 'echo ${GIT_COMMIT}'
           }
         }
@@ -55,7 +55,7 @@ pipeline {
     stage('Clone Gitops Repo dev Branch') {
       steps {
         git branch: 'main', url: 'https://github.com/tagost/app1-argocd.git'
-        sh 'git status'
+        sh 'ls -ltr'
       }
     }
   }  
