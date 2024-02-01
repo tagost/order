@@ -50,8 +50,8 @@ pipeline {
             sh 'echo ${GIT_COMMIT}'
             script{              
               def commit = sh(returnStdout: true, script: 'git log -1 --format=%h')
+              echo "commit: '${commit}'"
             }            
-            sh 'echo ${commit}'
           }
         }
       }
