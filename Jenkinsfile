@@ -47,6 +47,7 @@ pipeline {
             docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
             dockerImage.push("$GIT_COMMIT")
             sh 'echo ${GIT_COMMIT}'
+            sh 'git log -1 --format=%h'
           }
         }
       }
