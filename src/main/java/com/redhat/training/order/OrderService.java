@@ -39,7 +39,7 @@ public class OrderService {
         }
 
         // generate and return a random order id
-        return "Thank you for your order! Your order id is " + getRandom(1, 10000) + "\n";
+        return "Welcome version 1.0. Thank you for your order! Your order id is " + getRandom(1, 10000) + "\n";
     }
 
     @GET
