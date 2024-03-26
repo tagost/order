@@ -1,3 +1,3 @@
 @Library('SharedLibrary')_
 
-call()
+sayHello()
